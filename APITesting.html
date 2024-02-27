@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <title></title>
+</head>
+
+<body style="text-align:center">
+    <h1 style="color:green">GeekforGeeks</h1>
+    <h3>Calling the Web Services in HTML5</h3>
+    <h3 id="hello"></h3>
+    <button id="subBut">submit</button>
+    <script>
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8080/hello", true);
+        xhr.send();
+        xhr.onload = function()
+        {
+            console.log("testing1"); 
+            alert(xhr.responseText);
+            let repText = xhr.responseText;
+            document.getElementById("hello").innerHTML = repText;
+            console.log("testing1"); 
+        }
+
+        document.getElementById("subBut").onclick = function () {
+
+        //}
+
+        //function updatData() {
+            //var value = $("#sample").val();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/process",
+                data: "posting here" ,
+                timeout: 100000,
+                success: function (response) {
+                    alert("it's okay");
+                },
+                error: function (e) {
+                    console.log("ERROR: ", e);
+                    console.log(e);
+                },
+                done: function (e) {
+                    console.log("DONE");
+                }
+            });
+        }
+  
+    </script>
+</body>
+
+</html>
